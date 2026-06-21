@@ -5,8 +5,12 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
+I see a game with instructions to enter a number from 1 to 100, a kind of guessing game. There's a field where I can enter this number, some options to click on like difficulty selection and such. I can also decide whether I want hints or not, and to start a new game.
+
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
+1. When I enter a number and press enter (like the field hint says), nothing happens.
+2. I typed in 100, it says go lower. I typed in a very large number like 100000, it says go higher. It doesn't make sense.
 
 **Bug Reproduction Log**
 
@@ -14,16 +18,20 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+|Clicking on "New Game" |Should reset the game |Doesn't clear entries from debug console |None |
+|Enter 1000000 | "Go lower" | Says "Go higher" |None |
+|Changed difficulty, range changes |Guess instructions should reflect this |Does not, still says "1 and 100" |None |
 
 ---
 
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+
+Claude Code
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+One suggestion was for a bug I reported that some hints didn't seem to correctly compare the guess with the secret. It correctly found the code block which was the issue and I verified by entering a couple text cases for those scenarios.
+
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 
 ---
