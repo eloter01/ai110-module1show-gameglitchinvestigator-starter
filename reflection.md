@@ -33,7 +33,7 @@ Claude Code
 One suggestion was for a bug I reported that some hints didn't seem to correctly compare the guess with the secret. It correctly found the code block which was the issue and I verified by entering a couple text cases for those scenarios.
 
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
-
+Yes, I asked the AI "when I select a different difficulty under the "Difficulty" field on the UI, the "Range" value changes but the instructions still read to enter a number from 1 to 100. is this the intended functionality". This correctly told me where these values are hardcoded, but the programmer might not realize that the actual range values will have to be updated elsewhere too. For instance, because the 'Secret' value will have to be within this range.
 ---
 
 ## 3. Debugging and testing your fixes
