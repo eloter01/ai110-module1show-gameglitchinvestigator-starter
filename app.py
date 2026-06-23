@@ -38,6 +38,17 @@ st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
+if "active_difficulty" not in st.session_state:
+    st.session_state.active_difficulty = difficulty
+
+if st.session_state.active_difficulty != difficulty:
+    st.session_state.active_difficulty = difficulty
+    st.session_state.secret = new_secret_for_difficulty(difficulty)
+    st.session_state.attempts = 1
+    st.session_state.status = "playing"
+    st.session_state.history = []
+    st.rerun()
+
 if "attempts" not in st.session_state:
     st.session_state.attempts = 1
 
