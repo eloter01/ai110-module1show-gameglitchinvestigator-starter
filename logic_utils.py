@@ -26,6 +26,8 @@ def new_secret_for_difficulty(difficulty: str) -> int:
     return random.randint(low, high)
 
 
+# FIX: Extracted the difficulty-reset decision into a pure helper so it is
+# unit-testable without Streamlit.
 def should_reset_for_difficulty_change(
     active_difficulty: str, selected_difficulty: str
 ) -> bool:
@@ -70,6 +72,8 @@ def check_guess(guess, secret):
         return "Win", "🎉 Correct!"
 
     try:
+        # FIX: Swapped hint messages so a too-high guess says "Go LOWER!" and a
+        # too-low guess says "Go HIGHER!" (they were reversed).
         if guess > secret:
             return "Too High", "📉 Go LOWER!"
         else:
@@ -78,6 +82,7 @@ def check_guess(guess, secret):
         g = str(guess)
         if g == secret:
             return "Win", "🎉 Correct!"
+        # FIX: same message swap applied to the TypeError fallback branch.
         if g > secret:
             return "Too High", "📉 Go LOWER!"
         return "Too Low", "📈 Go HIGHER!"

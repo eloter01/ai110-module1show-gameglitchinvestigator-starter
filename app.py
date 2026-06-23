@@ -5,7 +5,7 @@ from logic_utils import (
     get_range_for_difficulty,
     build_guess_instructions,
     new_secret_for_difficulty,
-    should_reset_for_difficulty_change,
+    should_reset_for_difficulty_change,  # FIX: helper for difficulty-change reset
     parse_guess,
     check_guess,
     update_score,
@@ -39,6 +39,8 @@ st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
+# FIX: Regenerate the secret when difficulty changes. Previously the secret
+# was only set once, so switching difficulty left a secret from the old range.
 if "active_difficulty" not in st.session_state:
     st.session_state.active_difficulty = difficulty
 
