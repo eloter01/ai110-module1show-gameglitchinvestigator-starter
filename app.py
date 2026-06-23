@@ -5,6 +5,7 @@ from logic_utils import (
     get_range_for_difficulty,
     build_guess_instructions,
     new_secret_for_difficulty,
+    should_reset_for_difficulty_change,
     parse_guess,
     check_guess,
     update_score,
@@ -41,7 +42,9 @@ if "secret" not in st.session_state:
 if "active_difficulty" not in st.session_state:
     st.session_state.active_difficulty = difficulty
 
-if st.session_state.active_difficulty != difficulty:
+if should_reset_for_difficulty_change(
+    st.session_state.active_difficulty, difficulty
+):
     st.session_state.active_difficulty = difficulty
     st.session_state.secret = new_secret_for_difficulty(difficulty)
     st.session_state.attempts = 1

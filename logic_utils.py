@@ -26,6 +26,17 @@ def new_secret_for_difficulty(difficulty: str) -> int:
     return random.randint(low, high)
 
 
+def should_reset_for_difficulty_change(
+    active_difficulty: str, selected_difficulty: str
+) -> bool:
+    """Return True when the selected difficulty differs from the active one.
+
+    A change means the in-progress secret was picked for a different range and
+    must be regenerated, so the caller should reset the game state.
+    """
+    return active_difficulty != selected_difficulty
+
+
 def parse_guess(raw: str):
     """
     Parse user input into an int guess.
