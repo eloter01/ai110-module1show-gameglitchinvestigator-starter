@@ -116,3 +116,43 @@ def test_new_secret_within_hard_range():
     for _ in range(200):
         secret = new_secret_for_difficulty("Hard")
         assert 1 <= secret <= 50
+
+
+# --- Regression tests for the "hint message points the wrong direction" bug ---
+#
+# The original check_guess returned the correct outcome label but the wrong
+# hint text: a too-high guess told the player to "Go HIGHER!" and a too-low
+# guess told them to "Go LOWER!". The outcome-only tests above never caught
+# this because they discard the message. These lock in the message direction.
+
+def test_too_high_message_says_go_lower():
+    _, message = check_guess(60, 50)
+    assert "LOWER" in message
+    assert "HIGHER" not in message
+
+
+def test_too_low_message_says_go_higher():
+    _, message = check_guess(40, 50)
+    assert "HIGHER" in message
+    assert "LOWER" not in message
+
+
+# --- Regression tests for the "secret not regenerated on difficulty change" bug ---
+#
+# app.py only generated the secret once (guarded by "secret not in
+# session_state"), so switching difficulty left a secret picked for the old
+# range -- potentially outside the new displayed bounds. The reset decision is
+# now extracted into should_reset_for_difficulty_change so it is unit-testable
+# without Streamlit.
+
+def test_reset_when_difficulty_changes():
+    from logic_utils import should_reset_for_difficulty_change
+
+    assert should_reset_for_difficulty_change("Normal", "Easy") is True
+    assert should_reset_for_difficulty_change("Easy", "Hard") is True
+
+
+def test_no_reset_when_difficulty_unchanged():
+    from logic_utils import should_reset_for_difficulty_change
+
+    assert should_reset_for_difficulty_change("Easy", "Easy") is False
