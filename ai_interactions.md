@@ -41,19 +41,29 @@
 **Prompt used:**
 
 ```
-<!-- Paste the prompt you gave the AI -->
+review @app.py  and  @logic_utils.py  for PEP 8 style compliance and generate suggestions to resolve any formatting or naming issues you identify
 ```
 
 **Linting output before:**
-
+I didn't realize it skipped using linting tools because they weren't installed and instead decided to do it programmatically. I've pasted the results of that run below.
 ```
-<!-- Paste relevant linter warnings/errors -->
+### 1. Line too long — E501 (app.py:8, 82 > 79 chars)
+### 2. Missing blank line between import groups — E305/PEP 8 import grouping (app.py:1-2)
+### 3. Naming — module-level constant should be UPPER_CASE (app.py:27)
+### 4. Consistency — missing type hints (logic_utils.py:106, 153) [optional, style]
 ```
 
 **Changes applied:**
 
-<!-- Describe what you changed based on the AI's suggestions -->
+```
+app.py:
+Added a blank line between the standard-library import (random) and the third-party import (streamlit).
+Moved the # FIX: comment onto its own line above should_reset_for_difficulty_change, so the import line is no longer over 79 characters.
+Renamed the constant dictionary attempt_limit_map to ATTEMPT_LIMIT_MAP (uppercase, since it's a module-level constant), updating both where it's defined and where it's used.
 
+logic_utils.py:
+Added type hints for consistency with the other functions: parse_guess(raw: str | None) and a -> tuple[str, str] return annotation on check_guess.
+```
 ---
 
 ## Model Comparison (SF11)
