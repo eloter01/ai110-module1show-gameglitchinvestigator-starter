@@ -103,7 +103,7 @@ def should_reset_for_difficulty_change(
     return active_difficulty != selected_difficulty
 
 
-def parse_guess(raw: str):
+def parse_guess(raw: str | None):
     """Parse and validate raw text input into an integer guess.
 
     Converts the free-text value from the guess input box into an integer,
@@ -150,7 +150,7 @@ def parse_guess(raw: str):
     return True, value, None
 
 
-def check_guess(guess, secret):
+def check_guess(guess, secret) -> tuple[str, str]:
     """Compare a guess against the secret and classify the result.
 
     Determines whether the guess matches the secret or is too high/too low,
