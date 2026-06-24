@@ -33,13 +33,13 @@ It wrote the code, ran away, and now the game is unplayable.
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Select a difficulty from drop-down menu under Settings. Note the range of values that populates.
+2. Enter a number within this range in "Enter your guess" field. Click "Submit Guess", note the hint that populates.
+3. If "Go LOWER!", enter a lower number in the guess field and resubmit. Works similarly for too low of a guess.
+4. Try to guess the value within the allowed number of attempts. If you win, or reach the end and need to reset, click on "New Game".
+5. Optional fields include "Show hint" if you want to test your luck without hints.
 
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+**Screenshot** *(optional)*: ![game_win_screenshot](img\game_glitch_win.png)
 
 ## 🧪 Test Results
 
